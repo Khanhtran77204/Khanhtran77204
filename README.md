@@ -1,9 +1,9 @@
 - 👋 Hi, I’m Kevin
 - 👀 I’m interested in beating niggers
-- 🌱 I’m currently learning how to beat nigger
-- 💞️ I’m looking to collaborate on public beating nigger party
+- 🌱 I’m currently learning how to beat niggers
+- 💞️ I’m looking to collaborate on public beating niggers party
 - 📫 How to reach me ( through oral )
-- 😄 Pronouns: Fuck the pronoun shi
+- 😄 Pronouns: Fuck this cringe pronoun shi
 - ⚡ Fun fact: I hate niggers
 
 <!---
