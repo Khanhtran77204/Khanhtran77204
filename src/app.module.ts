@@ -17,7 +17,7 @@ import { CategoryModule } from './category/category.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'password',
+      password: '12345',
       database: 'demost22c',
       entities: [Product, Category],
       synchronize: true,

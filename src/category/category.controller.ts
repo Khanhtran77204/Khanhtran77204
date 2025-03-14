@@ -1,16 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { CategoryService } from './category.service';
 
 @Controller('category')
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
-  @Get('/')
-  async index() {
-    const category = await this.categoryService.getOneById(2);
+  @Get('/:id')
+  async getCategoriesById(@Param('id') id: number) {
+    console.log(123);
+
+    const category = await this.categoryService.getOneById(id);
+    console.log(1, category);
+
     const products = category?.products;
     return {
       message: 'get',
-      data: products,
+      data: category,
     };
   }
 }
