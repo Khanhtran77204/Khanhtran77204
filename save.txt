@@ -1,0 +1,52 @@
+st.title("🌾 Chẩn Đoán Bệnh Lá Lúa")
+st.write("Vui lòng tải lên 01 hình ảnh lá lúa.")
+
+uploaded_file = st.file_uploader("📷 CHỌN ẢNH:", type=["jpg", "png", "jpeg"])
+
+if uploaded_file is not None:
+    img = Image.open(uploaded_file)
+    st.image(img, caption="📷 Ảnh đã được tải", use_container_width=True)
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp_file:
+        img.save(tmp_file.name)
+
+        if st.button("🔍 Bắt đầu chẩn đoán"):
+            label = predict_image(tmp_file.name) # ignore the warning
+            warnings.filterwarnings("ignore")
+        st.write("**Kết quả chẩn đoán:**")
+        st.success(f"📋 Bệnh được chẩn đoán: -- {label}")
+
+>> lưu trữ ở dòng 39 - app.py
+
+
+def predict_image(image_path, model_path='model/rice_model.h5', class_map_path="class_indices.json"):
+    # Tải mô hình
+    model = load_model(model_path)
+    # Kích thước ảnh đầu vào
+    img = load_img(image_path, target_size=(128, 128)), load_and_preprocess_image(image_path)
+    img_array = img_to_array(img) / 255.0
+    img_array = np.expand_dims(img_array, axis=0)
+    # Dự đoán bệnh
+    prediction = model.predict(img)[0]
+    predicted_class = np.argmax(prediction)
+    predictions = model.predict(img_array)[0]
+    predicted_idx = np.argmax(predictions)
+    
+    with open(class_map_path, "r", encoding="utf-8") as f:
+        class_indices = json.load(f)
+    inv_map = {v: k for k, v in class_indices.items()}
+
+    predicted_label = inv_map[predicted_idx]
+    confidence = float(np.max(prediction) * 100)
+    # của confidence cũ: float(predictions[predicted_idx])
+    label_idx = np.argmax(predictions)
+    label = class_indices[label_idx]  
+    
+    if class_indices:
+        inv_map = {v: k for k, v in class_indices.items()}
+        return inv_map[predicted_class]
+    return confidence, label, predicted_label
+    # return cũ có predicted_label
+
+
+>> code cũ dòng 13 predict.py

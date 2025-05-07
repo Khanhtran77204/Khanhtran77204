@@ -1,0 +1,1 @@
+trong model có tệp "rice_model.h5" là mô hình kera đã được huấn luyện
