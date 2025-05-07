@@ -1,0 +1,1 @@
+# dự án ni để chẩn đoán bệnh cho mấy cái lá lúa
